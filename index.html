@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/776f4d6d51.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Cherry Lime Store</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/image/Logo.png" alt="Logo">
+        </div>
+        <div class="div-tienda"><button class="btn btn-shop" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <i class="fa-solid fa-cart-shopping"></i></button></div>
+
+    </header>
+
+    <main class="main">
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Tu carrito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    <div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Unidades</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Precio x unidad</th>
+                                    <th scope="col">Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tabla-body" id="tablabody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="precio-total" id="precio-total">
+                        <p id="precio-texto">Precio total $0</p>
+                    </div>
+                    <div class="boton-finalizar">
+                        <button type="button" class="btn btn-outline-success" id="finalizar-compra">Finalizar
+                            compra</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <div id="contenedor-tarjetas" class="d-flex flex-wrap justify-content-center gap-5 container-md contenedor">
+
+    </div>
+
+    <footer class="footer">
+        <div class="copy">
+            <p>Cherry Lime Store</p>
+        </div>
+    </footer>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+    <script src="./script.js"></script>
+    <script src="./storage.js"></script>
+</body>
+
+</html>
