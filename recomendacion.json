@@ -1,0 +1,14 @@
+[  {
+    "title": "Refresco de coco mango",
+    "price": "$1750",
+    "image": "./assets/image/cocolata.png"
+}, {
+    "title": "Refresco de frutilla",
+    "price": "$1250",
+    "image": "./assets/image/frutillalata.jpg"
+}, {
+    "title": "Refresco de melón",
+    "price": "$750",
+    "image": "./assets/image/melon.jpg"
+}
+]
