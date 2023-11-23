@@ -5,7 +5,7 @@ const [a, b] = recomendacion
 let boton = document.getElementById("boton2")
 boton.onclick = () => {
     recomendacion.length !== 0 && Swal.fire({
-        title: 'Productos recomendados!',
+        title: 'Recomendacion del dia!',
         text: 'Refresco de coco mango, refresco de frutilla y refresco de limón. ¿Qué esperas para probrarlos?',
     })
 }
