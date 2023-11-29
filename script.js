@@ -1,3 +1,97 @@
+const productos = [{
+    id: 1,
+    bebida: "Refresco de coco mango",
+    descripcion: "Contiene jugo de mango con trozos gelatinados de coco. Bebida de 340ml",
+    imagen: "assets/image/cocolata.png",
+    precio: 1750,
+    cantidad: 1
+}, {
+    id: 2,
+    bebida: "Refresco de frutilla",
+    descripcion: "Bebida Olipop sabor frutilla y Vainilla. Contiene 355ml",
+    imagen: "assets/image/frutillalata.png",
+    precio: 1250,
+    cantidad: 1
+
+}, {
+    id: 3,
+    bebida: "Refresco de sandía",
+    descripcion: "Refrescante bebida de sandía. Contiene 350ml",
+    imagen: "assets/image/sandialata.png",
+    precio: 1300,
+    cantidad: 1
+}, {
+    id: 4,
+    bebida: "Refresco de melón",
+    descripcion: "Soda de melón, contiene 350ml",
+    imagen: "assets/image/melon.jpg",
+    precio: 750,
+    cantidad: 1
+}, {
+    id: 5,
+    bebida: "Refresco de durazno",
+    descripcion: "Refresco de durazno y coco de 340ml",
+    imagen: "assets/image/durazno.jpg",
+    precio: 1150,
+    cantidad: 1
+}, {
+    id: 6,
+    bebida: "Refresco de uva",
+    descripcion: "Refrescante bebida sabor uva. Contiene 345ml",
+    imagen: "assets/image/uva.jpg",
+    precio: 920,
+    cantidad: 1
+}, {
+    id: 7,
+    bebida: "Refresco de limón",
+    descripcion: "Refrescante bebida de limón, se puede combinar. De 340ml",
+    imagen: "assets/image/limon.jpg",
+    precio: 1890,
+    cantidad: 1
+}, {
+    id: 8,
+    bebida: "Refresco de Cherry Lime",
+    descripcion: "Refrescante bebida sabor Cherry lime, 355ml",
+    imagen: "assets/image/kiwi.jpg",
+    precio: 1450,
+    cantidad: 1
+}];
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+renderizarProductos(productos);
+
+
+function renderizarProductos(productos) {
+    let container = document.getElementById("contenedor-tarjetas");
+
+    for (const producto of productos) {
+        let productoBebida = document.createElement("div");
+
+        productoBebida.innerHTML = `
+                <div class="producto-bebida"> 
+                <h3 class="nombre"><strong>${producto.bebida}</strong></h3>
+                <img class="producto-img" src="${producto.imagen}">
+                <div class="contenido">
+                <div class="contenido-texto">
+                <p class="descripcion"> Descripción: ${producto.descripcion}</p>
+                <p> <strong>Precio: $${producto.precio}</strong></p>
+                </div>
+                <div class="contenido-boton"
+                <button type="button" class="btn btn-outline-warning" id="btnañadir${producto.id}">AGREGAR AL CARRITO</button>
+                </div>
+                </div>
+                </div>`;
+        container.appendChild(productoBebida);
+    }
+     productos.forEach(producto => {
+        document.getElementById(`btnañadir${producto.id}`).addEventListener("click", function () {
+            agregarAlCarrito(producto);
+        });
+
+     });
+
+}
 
 
 function agregarAlCarrito(productoNuevo) {
@@ -6,7 +100,7 @@ function agregarAlCarrito(productoNuevo) {
     if (index !== -1) {
         carrito[index].cantidad += 1
         actualizarCarrito()
-        sessionStorage.setItem("carrito", JSON.stringify(carrito));
+        localStorage.setItem("carrito", JSON.stringify(carrito));
         document.querySelector("#precio-texto").innerText = ( `
         Precio total: $ ${obtenerPrecioTotal()}`);
         Swal.fire({
@@ -30,9 +124,9 @@ function agregarAlCarrito(productoNuevo) {
             showConfirmButton: false,
             timer: 1500
           })
-        sessionStorage.setItem("carrito", JSON.stringify(carrito));
-        actualizarCarrito();
+        localStorage.setItem("carrito", JSON.stringify(carrito));
         saveLocal();
+        actualizarCarrito();
         document.querySelector("#precio-texto").innerText = (`
         Precio total: $${obtenerPrecioTotal()}`);
 
@@ -78,7 +172,7 @@ function eliminarDelCarrito(id) {
             if (result.isConfirmed) {
                 let newCarrito = carrito.filter(producto => producto.id !== id)
                 carrito = newCarrito 
-                sessionStorage.setItem("carrito", JSON.stringify(carrito));
+                localStorage.setItem("carrito", JSON.stringify(carrito));
                 actualizarCarrito();
                 carrito.forEach(producto => {
                     document.getElementById(`btnelim${producto.id}`).addEventListener("click", function () {
@@ -146,9 +240,34 @@ const confirmarCompra = () => {
 confirmarCompra ()
 
 
+const saveLocal = () => {
+    localStorage.setItem("carrito", JSON.stringify (carrito));
+
+};
 
 
 
+function renderizarCarrito() {
+    const tablaBody = document.getElementById("tablabody");
+    tablaBody.innerHTML = '';
+
+    for (const producto of carrito) {
+        tablaBody.innerHTML += `
+            <tr>
+                <td>${producto.cantidad}</td>
+                <td>${producto.bebida}</td>
+                <td>$${producto.precio}</td>
+                <td>$${producto.precio * producto.cantidad}</td>
+                <td><button class="boton-eliminar-producto btn btn-outline-danger" type="button" id="btnelim${producto.id}"><i class="fa-solid fa-trash"></i></button></td>
+            </tr>`;
+    }
+
+    for (const producto of carrito) {
+        document.getElementById(`btnelim${producto.id}`).addEventListener("click", function () {
+            eliminarDelCarrito(producto.id);
+        });
+    }
+}
 
 
 
