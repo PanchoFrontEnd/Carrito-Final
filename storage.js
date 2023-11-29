@@ -103,28 +103,4 @@ const saveLocal = () => {
 renderizarCarrito(carrito);
 
 
-function renderizarCarrito(carrito) {
-    let container = document.getElementById("contenedor-tarjetas");
-
-    for (const producto of carrito) {
-        let productoBebida = document.createElement("div");
-
-        productoBebida.innerHTML = `
-        <tr>
-            <td>${producto.cantidad}</td>
-            <td>${producto.bebida}</td>
-            <td>$${producto.precio}</td>
-            <td>$${producto.precio * producto.cantidad}</td>
-            <td><button class="boton-eliminar-producto btn btn-outline-danger" type="button" id="btnelim${producto.id}"><i class="fa-solid fa-trash"></i></button></td>
-        </tr>`;
-        container.appendChild(productoBebida);
-    }
-     productos.forEach(producto => {
-        document.getElementById(`btnañadir${producto.id}`).addEventListener("click", function () {
-            agregarAlCarrito(producto);
-        });
-
-     });
-
-}
 
