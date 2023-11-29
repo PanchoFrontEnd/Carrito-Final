@@ -31,7 +31,8 @@ function agregarAlCarrito(productoNuevo) {
             timer: 1500
           })
         sessionStorage.setItem("carrito", JSON.stringify(carrito));
-        actualizarCarrito()
+        actualizarCarrito();
+        saveLocal();
         document.querySelector("#precio-texto").innerText = (`
         Precio total: $${obtenerPrecioTotal()}`);
 
@@ -41,6 +42,7 @@ function agregarAlCarrito(productoNuevo) {
             });
         })
     }
+    
 }
 
 
@@ -142,6 +144,9 @@ const confirmarCompra = () => {
 }
 
 confirmarCompra ()
+
+
+
 
 
 

@@ -57,7 +57,7 @@ const productos = [{
     cantidad: 1
 }];
 
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 renderizarProductos(productos);
 
@@ -92,3 +92,12 @@ function renderizarProductos(productos) {
      });
 
 }
+
+const saveLocal = () => {
+    localStorage.setItem("carrito", JSON.stringify (carrito));
+
+};
+
+
+
+
