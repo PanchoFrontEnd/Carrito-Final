@@ -198,14 +198,6 @@ const confirmarCompra = () => {
 }
 
 
-
-
-
-
-
-
-
-
 confirmarCompra();
 renderizarProductos();
 actualizarCarrito();
